@@ -3,32 +3,32 @@ var fs = require('fs')
 let parseCommands = input => input.split("\r\n").map(parseCommand)
 
 let parseCommand = input => {
-    let match = input.match(/^(.+) (\d+)$/mi)
+  let match = input.match(/^(.+) (\d+)$/mi)
 
-    var command = {
-        action: match[1],
-        units: parseInt(match[2], 10)
-    }
+  var command = {
+    action: match[1],
+    units: parseInt(match[2], 10)
+  }
 
-    return command
+  return command
 }
 
 let processCommands = commands => {
-    var position = { horizontal: 0, depth: 0, aim: 0 }
+  var position = { horizontal: 0, depth: 0, aim: 0 }
 
-    for (var i = 0; i < commands.length; i++) {
-        let command = commands[i]
-        if (command.action == 'forward') {
-            position.horizontal += command.units
-            position.depth += position.aim * command.units
-        } else if (command.action == 'down') {
-            position.aim += command.units
-        } else if (command.action == 'up') {
-            position.aim -= command.units
-        }
+  for (var i = 0; i < commands.length; i++) {
+    let command = commands[i]
+    if (command.action == 'forward') {
+      position.horizontal += command.units
+      position.depth += position.aim * command.units
+    } else if (command.action == 'down') {
+      position.aim += command.units
+    } else if (command.action == 'up') {
+      position.aim -= command.units
     }
+  }
 
-    return position
+  return position
 }
 
 
