@@ -1,5 +1,4 @@
 let fs = require('fs');
-const { execPath } = require('process');
 
 let parseInput = input => input.match(/^.+$/gm)
 
